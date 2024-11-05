@@ -75,8 +75,9 @@ with col2:
                             image_path = os.path.join(train_image_dir, image_name)
                             image = Image.open(image_path)
                             st.image(image, caption= json_name[:-5])
-                            relevant = st.slider('Chọn mức độ relevant:', 0, 5, 2, key= json_name)
-                            relevant_images[image_name] = relevant
+                            relevant = st.slider('Chọn mức độ relevant:', 0, 5, 0, key= json_name)
+                            if relevant > 0:
+                                relevant_images[image_name] = relevant
                             break
 
 with col1:
