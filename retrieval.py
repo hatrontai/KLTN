@@ -8,11 +8,11 @@ from PIL import Image
 from io import BytesIO
 
 st.title('Image Retrieval')
-data_dir = "D:/Workspace/dataset/Total-Text"
-train_image_dir = os.path.join(data_dir, 'train')
+data_dir = "./total-text-DatasetNinja"
+train_image_dir = os.path.join(data_dir, 'train/img')
 image_names = sorted([int(f[3:-4]) for f in os.listdir(train_image_dir) if f.endswith(('jpg', 'jpeg', 'png'))])
 # st.write(image_names)
-train_label_dir = os.path.join(data_dir, "Annotation/ann_json")
+train_label_dir = os.path.join(data_dir, "ann_json")
 lenght = len(os.listdir(train_image_dir))
 font_label = ['serif', 'sans_serif', 'script', 'monospaced', 'display']
 shape_label = ['vertical', 'horizontal', 'circular', 'curvy']
@@ -24,8 +24,9 @@ font_query = ' '.join(sorted_font)
 
 shape_query = st.multiselect('shape query:', shape_label, [], key= 'shape')
 
-col1, spacer, col2 = st.columns([1, 0.2, 1])
-
+col1, spacer, col2 = st.columns([1, 0.2, 3])
+if "relevant_images" not in st.session_state:
+    st.session_state.relevant_images = {}
 def local_css():
     st.markdown(
         """
@@ -34,7 +35,7 @@ def local_css():
             position: fixed;
             top: 10%;
             left: 5%;
-            width: 30%;
+            width: 20%;
             z-index: 1;
         }
         </style>
@@ -43,6 +44,7 @@ def local_css():
     )
 
 # Gọi hàm để thêm CSS vào trang
+
 local_css()
 
 with col1:
@@ -76,13 +78,16 @@ with col2:
                             image = Image.open(image_path)
                             st.image(image, caption= json_name[:-5])
                             relevant = st.slider('Chọn mức độ relevant:', 0, 5, 0, key= json_name)
+                            
                             if relevant > 0:
-                                relevant_images[image_name] = relevant
+                                st.session_state.relevant_images[image_name] = relevant
+                            elif image_name in st.session_state.relevant_images:
+                                del st.session_state.relevant_images[image_name]
                             break
 
 with col1:
     if uploaded_file is not None:
-        relevant_images = dict(sorted(relevant_images.items(), key=lambda item: item[1], reverse= True))
+        relevant_images = dict(sorted(st.session_state.relevant_images.items(), key=lambda item: item[1], reverse= True))
         st.write(relevant_images)
         if name_image_query in os.listdir(query_image_dir):
             st.write("name already exists, please anter another name")
@@ -94,6 +99,7 @@ with col1:
                 image_query.save(image_query_path, format="PNG")
 
                 label_path = os.path.join(query_image_dir, 'relevant.json')
+                label = {}
                 with open(label_path, 'r') as file:
                     label = json.load(file)
                 label[name_image_query] = relevant_images
