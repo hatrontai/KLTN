@@ -24,7 +24,7 @@ font_query = ' '.join(sorted_font)
 
 shape_query = st.multiselect('shape query:', shape_label, [], key= 'shape')
 
-col1, spacer, col2 = st.columns([1, 0.2, 3])
+col1, spacer, col2 = st.columns([1, 0.2, 1])
 if "relevant_images" not in st.session_state:
     st.session_state.relevant_images = {}
 def local_css():
@@ -58,7 +58,8 @@ with col1:
         st.image(image_query, caption="Image query", use_column_width=True)
         st.markdown('</div>', unsafe_allow_html=True)
         name_image_query = st.text_input('name of image query')
-        
+            
+    
 
         # st.image(image, caption='Image query', use_column_width=True)
 with col2:
@@ -88,7 +89,14 @@ with col2:
 with col1:
     if uploaded_file is not None:
         relevant_images = dict(sorted(st.session_state.relevant_images.items(), key=lambda item: item[1], reverse= True))
-        st.write(relevant_images)
+        # st.write(relevant_images)
+        for item in st.session_state.relevant_images.items():
+            st.write('Level relevant: ', item[1])
+            image_name = item[0]
+            image_path = os.path.join(train_image_dir, image_name)
+            image = Image.open(image_path)
+            st.image(image, image_name)
+            st.write('') 
         if name_image_query in os.listdir(query_image_dir):
             st.write("name already exists, please anter another name")
         else:
