@@ -115,11 +115,17 @@ with col1:
         relevant_images = dict(sorted(st.session_state.relevant_images.items(), key=lambda item: item[1], reverse= True))
         # st.write(relevant_images)
         for item in st.session_state.relevant_images.items():
-            st.write('Level relevant: ', item[1])
+            # st.write('Level relevant: ', item[1])
             image_name = item[0]
             image_path = os.path.join(train_image_dir, image_name)
             image = Image.open(image_path)
             st.image(image, image_name)
+            relevant = st.slider('Chọn mức độ relevant:', 0, 5, item[1], key= image_name)
+
+            if relevant > 0:
+                st.session_state.relevant_images[image_name] = relevant
+            elif image_name in st.session_state.relevant_images:
+                del st.session_state.relevant_images[image_name]
             st.write('') 
       
         save = st.button("save", type= "primary")
