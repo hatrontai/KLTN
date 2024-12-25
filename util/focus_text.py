@@ -35,7 +35,7 @@ extra_cfg = {
     'num_workers': 24,
     'cuda': False,
     'mgpu': False,
-    'save_dir': './TextBPN/model/',
+    'save_dir': './TextBPN-Plus-Plus/model/',
     'vis_dir': './vis/',
     'log_dir': './logs/',
     'loss': 'CrossEntropyLoss',
