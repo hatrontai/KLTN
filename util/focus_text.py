@@ -8,16 +8,16 @@ import numpy as np
 from PIL import Image
 from pathlib import Path
 import torch.nn.functional as F
-from TextBPN.util import canvas as cav
+from TextBPN-Plus-Plus.util import canvas as cav
 import torch.backends.cudnn as cudnn
 import torch.utils.data as data
-from TextBPN.dataset.deploy import DeployDataset
-from TextBPN.network.textnet import TextNet
-from TextBPN.cfglib.config import config as cfg
-from TextBPN.cfglib.option import BaseOptions
-from TextBPN.util.augmentation import BaseTransform
-from TextBPN.util.visualize import visualize_gt
-from TextBPN.util.misc import to_device, mkdirs,rescale_result
+from TextBPN-Plus-Plus.dataset.deploy import DeployDataset
+from TextBPN-Plus-Plus.network.textnet import TextNet
+from TextBPN-Plus-Plus.cfglib.config import config as cfg
+from TextBPN-Plus-Plus.cfglib.option import BaseOptions
+from TextBPN-Plus-Plus.util.augmentation import BaseTransform
+from TextBPN-Plus-Plus.util.visualize import visualize_gt
+from TextBPN-Plus-Plus.util.misc import to_device, mkdirs,rescale_result
 
 input_dir = './database/image'
 extra_cfg = {
