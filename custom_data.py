@@ -30,8 +30,8 @@ image_names = sorted([int(f[3:-4]) for f in os.listdir(train_image_dir) if f.end
 # st.write(image_names)
 train_label_dir = os.path.join(data_dir, "Annotation/ann_json")
 lenght = len(os.listdir(train_image_dir))
-font_label = ['serif', 'sans_serif', 'script', 'monospaced', 'display']
-shape_label = ['vertical', 'horizontal', 'circular', 'curvy']
+font_label = ['serif', 'sans_serif', 'script']
+shape_label = ['vertical', 'horizontal', 'curvy']
 order_dict = {label: index for index, label in enumerate(font_label)}
 
 if 'img_index' not in st.session_state:
