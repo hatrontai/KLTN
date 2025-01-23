@@ -3,3 +3,4 @@
 - Thuong Le Hoai - 21520474
 
 ![Problem](https://github.com/user-attachments/assets/51c286a4-04a7-47d1-a763-99207fdb508b)
+[Report](https://drive.google.com/file/d/1euQ19HYehJYkIhxQosx4GdaHI8gOFsiK/view?usp=sharing)
