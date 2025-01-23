@@ -3,4 +3,5 @@ Report of KLTN - [COMPOSED STYLE-CONSISTENT SCENE TEXT IMAGE RETRIEVAL](https://
 - Trong Tai Ha - 21520436
 - Thuong Le Hoai - 21520474
 
-![Problem](https://github.com/user-attachments/assets/51c286a4-04a7-47d1-a763-99207fdb508b)
+![Problem](https://github.com/user-attachments/assets/c843b89b-b95f-44a9-9d09-32fc4f75e212)
+
